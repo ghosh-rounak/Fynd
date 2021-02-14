@@ -37,11 +37,11 @@ class MoviesAdapter(private val clickListener:(Result,Int)->Unit)
         return differ.currentList.size
     }
 
-    //Added starts
+   /* //Added starts
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = position
 
-    //Added ends
+    //Added ends*/
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(differ.currentList[position],clickListener)
@@ -52,6 +52,7 @@ class MoviesAdapter(private val clickListener:(Result,Int)->Unit)
 class MovieViewHolder(private val binding: ListMovieBinding): RecyclerView.ViewHolder(binding.root){
 
     fun bind(result: Result,clickListener:(Result,Int)->Unit){
+        binding.movieImg.setImageBitmap(null)
         binding.result = result
         binding.executePendingBindings()
 

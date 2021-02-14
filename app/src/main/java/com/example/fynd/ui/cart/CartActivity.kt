@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fynd.R
 import com.example.fynd.data.db.entities.Movie
 import com.example.fynd.databinding.ActivityCartBinding
@@ -75,6 +76,14 @@ class CartActivity : AppCompatActivity(), KodeinAware {
             )
         })
         binding.recyclerViewSavedMovieList.adapter = dBMoviesAdapter
+
+        dBMoviesAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                Log.d("onCreate", "Scroll Top: ")
+                binding.recyclerViewSavedMovieList.smoothScrollToPosition(0)
+            }
+        })
     }
 
 

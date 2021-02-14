@@ -116,6 +116,18 @@ class MoviesActivity : AppCompatActivity() , KodeinAware {
             )
         }
         binding.recyclerViewUserList.adapter = moviesAdapter
+
+        //----
+        moviesAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                Log.d("onCreate", "Scroll Top: ")
+                binding.recyclerViewUserList.smoothScrollToPosition(0)
+            }
+        })
+
+        //----
+
         binding.recyclerViewUserList.addOnScrollListener(this.scrollListener)
     }
 

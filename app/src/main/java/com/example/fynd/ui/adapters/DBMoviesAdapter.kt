@@ -37,11 +37,11 @@ class DBMoviesAdapter(private val clickListener:(Movie, Int)->Unit,private val l
     }
 
 
-    //Added starts
+  /*  //Added starts
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = position
 
-    //Added ends
+    //Added ends*/
 
 
 
@@ -54,6 +54,7 @@ class DBMoviesAdapter(private val clickListener:(Movie, Int)->Unit,private val l
 class DBMovieViewHolder(private val binding: ListMovieDbBinding): RecyclerView.ViewHolder(binding.root){
 
     fun bind(movie: Movie, clickListener:(Movie, Int)->Unit,longClickListener:(Movie,Int)->Boolean){
+        binding.movieImg.setImageBitmap(null)
         binding.movie = movie
         binding.executePendingBindings()
 
